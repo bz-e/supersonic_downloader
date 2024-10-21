@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "supersonic_downloader"
+version = "0.0.1"
+dependencies = ["requests>=2.32.3", "aiohttp>=3.10.8", "loguru>=0.7.2"]
+requires-python = ">=3.10"
+authors = [{ name = "bz-e", email = "bozhang_2@163.com" }]
+maintainers = [{ name = "bz-e", email = "bozhang_2@163.com" }]
+
+description = "A fast and efficient downloader"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["Downloader", "Multithreading", "Coroutine", "Async", "Fast"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+]
+
+[project.urls]
+Repository = "https://github.com/bz-e/supersonic_downloader.git"
