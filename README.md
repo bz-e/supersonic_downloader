@@ -25,6 +25,9 @@ file_path = "download_file/model.safetensors"
 proxy={"http": "http://127.0.0.1:8080","https": "http://127.0.0.1:8080"} # [optional]
 hooks=[lambda x :print(f"print response statue code:{x.status_code}")] # [optional] after response, you can do something
 
+thread_download(url=url, file_path=file_path, proxy=proxy, hooks=hooks) # multi-threaded download
+coroutine_download(url=url, file_path=file_path, proxy=proxy, hooks=hooks) # multi-coroutine download
+
 ```
 
 
