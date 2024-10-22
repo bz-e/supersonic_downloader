@@ -1,5 +1,6 @@
 # supersonic_downloader
-**A multi-threaded, multi-coroutine download tool written in Python.When you need to download some relatively large model parameters, you can use this package directly in the Python code to quickly download the model parameters, and it supports proxies.**
+**A multi-threaded, multi-coroutine download tool written in Python.When you need to download some relatively large model parameters ，videos or other large files, you can use this package directly in the Python code to quickly download what you need, and it supports proxies.**
+**一个用python编写的多线程、多协程下载器，可以帮助你在深度学习代码里高速下载模型参数，也能帮你下快速载长视频、大文件**
 
 # Quick Start
 ```python
