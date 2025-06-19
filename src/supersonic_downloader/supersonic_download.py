@@ -6,6 +6,7 @@ import uuid
 import asyncio
 import aiohttp
 import inspect
+from typing import Optional
 
 STATE_MESSAGE = "Download Success!"
 
@@ -14,7 +15,12 @@ class SupersonicDownloader:
     """Supersonic Downloader Class"""
 
     def __init__(
-        self, url=None, job_nums=30, file_path=None, retries=10, **kwargs
+        self,
+        url: Optional[str] = None,
+        job_nums: int = 30,
+        file_path: Optional[str] = None,
+        retries: int = 10,
+        **kwargs,
     ) -> None:
         """
         Intitialize the Supersonic Downloader.
@@ -50,7 +56,7 @@ class SupersonicDownloader:
         # redirect
         redirct_start_time = time.time()
         while res.status_code in (301, 302):
-            self.url = res.headers["Location"] 
+            self.url = res.headers["Location"]
             res = self.session.head(self.url, timeout=30)
             redirct_middle_time = time.time()
             if (redirct_middle_time - redirct_start_time) > 60:
@@ -76,7 +82,7 @@ class SupersonicDownloader:
             positions.append((start_pos, end_pos))
         self.positions = positions
 
-    def _thread_downloadTask(self, start_pos, end_pos, chunk_size):
+    def _thread_downloadTask(self, start_pos: int, end_pos: int, chunk_size: int):
         """Download a specific range of the file using thread.
 
         :param start_pos: Start position of the range to download.
@@ -103,7 +109,7 @@ class SupersonicDownloader:
                         f"{inspect.currentframe().f_code.co_name} : _downloadTask error, retry failed"
                     )
 
-    def _thread_download(self, chunk_size=256 * 1024):
+    def _thread_download(self, chunk_size: int = 256 * 1024):
         """Download the file using thread.
 
         :param chunk_size: Size of each chunk to download.
@@ -165,7 +171,7 @@ class SupersonicDownloader:
                 tasks.append(self._coroutine_downloadTask(session, start_pos, end_pos))
             await asyncio.gather(*tasks)
 
-    def download(self, mode="thread", chunk_size=256 * 1024):
+    def download(self, mode: str = "thread", chunk_size: int = 256 * 1024) -> str:
         """Download the file.
 
         :param mode: Download mode, "thread" or "coroutine".

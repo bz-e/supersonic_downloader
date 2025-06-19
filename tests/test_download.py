@@ -1,9 +1,8 @@
 import pytest
 import sys
+import os
 
-sys.path.append(
-    "C:\\Users\\BZ233\\workspace\\pythonProject\\open-source\\supersonic_downloader"
-)
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.supersonic_downloader import thread_download, coroutine_download, STATE_MESSAGE
 
 # from src.supersonic_downloader.utils import run_git_command
@@ -57,14 +56,15 @@ params4 = pytest.mark.parametrize(
 )
 
 
-
 # @params1
 # def test_thread_download(url, proxy, expected):
 #     assert thread_download(url=url, proxy=proxy) == expected
 
+
 @params4
-def test_thread_download2(url,expected):
+def test_thread_download2(url, expected):
     assert thread_download(url=url) == expected
+
 
 # @params2
 # def test_coroutine_download(url, file_path, proxy, expected):
@@ -74,7 +74,6 @@ def test_thread_download2(url,expected):
 @params3
 def test_coroutine_download2(url, file_path, expected):
     assert coroutine_download(url=url, file_path=file_path) == expected
-
 
 
 # @pytest.mark.parametrize(
